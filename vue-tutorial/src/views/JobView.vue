@@ -24,7 +24,7 @@ const deleteJob = async () => {
       await axios.delete(`/api/jobs/${jobId}`);
       router.push({
         path: "/jobs",
-        state: { toast: "Job deleted successfully." },
+        query: { deleted: "true" },
       });
     }
   } catch (error) {
@@ -41,6 +41,14 @@ onMounted(async () => {
     console.error("Error fetching job", error);
   } finally {
     state.isLoading = false;
+  }
+});
+
+onMounted(() => {
+  if (route.query.edited === "true") {
+    toast.success("Job updated successfully.");
+  } else if (route.query.added === "true") {
+    toast.success("Job added successfully.");
   }
 });
 </script>

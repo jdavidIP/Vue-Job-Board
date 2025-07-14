@@ -52,7 +52,7 @@ const handleSubmit = async () => {
       const response = await axios.patch(`/api/jobs/${jobId}`, updatedJob);
       router.push({
         path: `/jobs/${response.data.id}`,
-        state: { toast: "Job updated successfully." },
+        query: { edited: "true" },
       });
     }
   } catch (error) {

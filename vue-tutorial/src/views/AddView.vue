@@ -39,7 +39,7 @@ const handleSubmit = async () => {
     const response = await axios.post("/api/jobs", newJob);
     router.push({
       path: `/jobs/${response.data.id}`,
-      state: { toast: "Job added successfully." },
+      query: { added: "true" },
     });
   } catch (error) {
     console.error("Error fetching job", error);
@@ -85,7 +85,7 @@ const handleSubmit = async () => {
               id="name"
               name="name"
               class="border rounded w-full py-2 px-3 mb-2"
-              placeholder="eg. Beautiful Apartment In Miami"
+              placeholder="eg. Junior Vue Developer"
               required
             />
           </div>
